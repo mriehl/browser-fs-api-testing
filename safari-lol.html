@@ -4,15 +4,8 @@
 <head>
     <script type="text/javascript">
         async function doStorageStuff() {
-            let root = await navigator.storage.getDirectory()
-            let d = await root.getDirectoryHandle('test', { 'create': true })
-            let f = await d.getFileHandle('file.txt', { 'create': true })
-            let h = await f.createSyncAccessHandle()
-            let wb = new TextEncoder().encode('lol ok')
-            h.write(wb)
-            await h.flush()
-            await h.close()
-            alert('done')
+            let worker = new Worker('safari-worker.js')
+            worker.postMessage([])
         }
     </script>
 </head>
