@@ -7,9 +7,11 @@
             let root = await navigator.storage.getDirectory()
             let d = await root.getDirectoryHandle('test', { 'create': true })
             let f = await d.getFileHandle('file.txt', { 'create': true })
-            let w = await f.createWritable()
-            await w.write('lol ok')
-            await w.close()
+            let h = await f.createSyncAccessHandle()
+            let wb = new TextEncoder().encode('lol ok')
+            h.write(wb)
+            await h.flush()
+            await h.close()
             alert('done')
         }
     </script>
