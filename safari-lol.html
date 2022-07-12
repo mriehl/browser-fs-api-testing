@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        async function doStorageStuff() {
+            let root = await navigator.storage.getDirectory()
+            let d = await root.getDirectoryHandle('test', { 'create': true })
+            let f = await d.getFileHandle('file.txt', { 'create': true })
+            let w = await f.createWritable()
+            await w.write('lol ok')
+            await w.close()
+            alert('done')
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="doStorageStuff()">Init</button>
+</body>
+
+</html>
